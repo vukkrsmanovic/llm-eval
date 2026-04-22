@@ -1,0 +1,43 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "total_tasks": 5,
+  "passed": 4,
+  "pass_at_1": 0.8,
+  "results": [
+    {
+      "task_id": 1,
+      "prompt": "Write a Python function called `add(a, b)` that returns the sum of two numbers.",
+      "generated_code": "def add(a, b):\n    return a + b",
+      "passed": true,
+      "error": null
+    },
+    {
+      "task_id": 2,
+      "prompt": "Write a Python function called `reverse_string(s)` that returns the reversed string.",
+      "generated_code": "def reverse_string(s):\n    return s[::-1]",
+      "passed": true,
+      "error": null
+    },
+    {
+      "task_id": 3,
+      "prompt": "Write a Python function called `is_palindrome(s)` that returns True if s is a palindrome.",
+      "generated_code": "def is_palindrome(s):\n    \"\"\"\n    Check if the given string s is a palindrome.\n    \n    A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n    \n    Parameters:\n    s (str): The string to check.\n    \n    Returns:\n    bool: True if s is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_s = ''.join(char.lower() for char in s if char.isalnum())\n    # Compare the cleaned string with its reverse\n    return cleaned_s == cleaned_s[::-1]\n\n# Function to test the correctness of the is_palindrome function\ndef check_palindrome():\n    assert is_palindrome(\"A man, a plan, a canal: Panama\") == True, \"Test case 1 failed\"\n    assert is_palindrome(\"race a car\") == False, \"Test case 2 failed\"\n    assert is_palindrome(\" \") == True, \"Test case 3 failed\"\n    assert is_palindrome(\"No lemon, no melon\") == True, \"Test case 4 failed\"\n    print(\"All test cases passed!\")\n\ncheck_palindrome",
+      "passed": true,
+      "error": null
+    },
+    {
+      "task_id": 4,
+      "prompt": "Write a Python function called `factorial(n)` that returns n factorial. Assume n >= 0.",
+      "generated_code": "def factorial(n):\n    if not isinstance(n, int) or n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    \n    return 1 if n == 0 else n * factorial(n - 1)",
+      "passed": true,
+      "error": null
+    },
+    {
+      "task_id": 5,
+      "prompt": "Write a Python function called `fizzbuzz(n)` that returns 'Fizz' if n divisible by 3, 'Buzz' if by 5, 'FizzBuzz' if both, else the number as string.",
+      "generated_code": "def fizzbuzz(n):\n    return \"Fizz\" if n % 3 == 0 else \"Buzz\" if n % 5 == 0 else str(n)",
+      "passed": false,
+      "error": "Assertion failed"
+    }
+  ]
+}
