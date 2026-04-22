@@ -8,7 +8,7 @@ A lightweight framework for evaluating the coding ability of small LLMs using au
 - Runs unit tests and reports pass@1
 
 ## Models
-Qwen/Qwen2.5-0.5B-Instruct
+Qwen/Qwen2.5-0.5B-Instruct  
 Qwen/Qwen2.5-1.5B-Instruct
 
 ## Results
