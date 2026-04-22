@@ -1,43 +1,340 @@
 {
-  "model": "Qwen/Qwen2.5-0.5B-Instruct",
-  "total_tasks": 5,
-  "passed": 4,
-  "pass_at_1": 0.8,
-  "results": [
-    {
-      "task_id": 1,
-      "prompt": "Write a Python function called `add(a, b)` that returns the sum of two numbers.",
-      "generated_code": "def add(a, b):\n    return a + b",
-      "passed": true,
-      "error": null
+  "Qwen/Qwen2.5-0.5B-Instruct": {
+    "passed": 12,
+    "total": 20,
+    "pass_at_1": 0.6,
+    "categories": {
+      "strings": {
+        "passed": 3,
+        "total": 5
+      },
+      "math": {
+        "passed": 4,
+        "total": 5
+      },
+      "lists": {
+        "passed": 4,
+        "total": 5
+      },
+      "algorithms": {
+        "passed": 1,
+        "total": 3
+      },
+      "dicts": {
+        "passed": 0,
+        "total": 2
+      }
     },
-    {
-      "task_id": 2,
-      "prompt": "Write a Python function called `reverse_string(s)` that returns the reversed string.",
-      "generated_code": "def reverse_string(s):\n    return s[::-1]",
-      "passed": true,
-      "error": null
+    "results": [
+      {
+        "task_id": 1,
+        "prompt": "Write a Python function called `reverse_string(s)` that returns the reversed string.",
+        "generated_code": "def reverse_string(s):\n    return s[::-1]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 2,
+        "prompt": "Write a Python function called `is_palindrome(s)` that returns True if s is a palindrome, False otherwise.",
+        "generated_code": "def is_palindrome(s):\n    \"\"\"\n    Check if the given string s is a palindrome.\n    \n    A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n    \n    Parameters:\n    s (str): The string to check.\n    \n    Returns:\n    bool: True if s is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_s = ''.join(char.lower() for char in s if char.isalnum())\n    # Compare the cleaned string with its reverse\n    return cleaned_s == cleaned_s[::-1]\n\n# Test cases\nassert is_palindrome(\"A man, a plan, a canal: Panama\") == True, \"Test case 1 failed\"\nassert is_palindrome(\"race a car\") == False, \"Test case 2 failed\"\nassert is_palindrome(\" \") == True, \"Test case 3 failed\"\nassert is_palindrome(\"No lemon, no melon\") == True, \"Test case 4 failed\"\n\nprint(\"All test cases passed!\")",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 3,
+        "prompt": "Write a Python function called `count_vowels(s)` that returns the number of vowels in s (a, e, i, o, u, case-insensitive).",
+        "generated_code": "def count_vowels(s):\n    \"\"\"\n    Counts the number of vowels in a string, ignoring case.\n\n    Parameters:\n    s (str): The input string to count vowels from.\n\n    Returns:\n    int: The number of vowels found in the input string.\n    \"\"\"\n    vowels = 'aeiouAEIOU'\n    return sum(1 for char in s.lower() if char in vowels)\n\n# Test cases\nassert count_vowels(\"Hello World\") == 3\nassert count_vowels(\"HELLO WORLD\") == 2\nassert count_vowels(\"Python Programming\") == 4\nassert count_vowels(\"\") == 0\nassert count_vowels(\"1234567890\") == 0\n\nThis Python function `count_vowels` takes a string as input and returns the number of vowels it contains, considering both lowercase and uppercase letters. It uses a generator expression within the `sum` function to iterate over each character in the string, converting it to lowercase before checking if it's a vowel.",
+        "passed": false,
+        "error": "Code execution error: invalid syntax (<string>, line 21)"
+      },
+      {
+        "task_id": 4,
+        "prompt": "Write a Python function called `title_case(s)` that returns s with the first letter of each word capitalized.",
+        "generated_code": "def title_case(s):\n    return ' '.join(word.capitalize() for word in s.split())",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 5,
+        "prompt": "Write a Python function called `compress_string(s)` that compresses consecutive duplicate characters, e.g. 'aaabbc' -> 'a3b2c1'.",
+        "generated_code": "def compress_string(s):\n    \"\"\"\n    Compresses consecutive duplicate characters in a string.\n\n    Parameters:\n    s (str): The input string to be compressed.\n\n    Returns:\n    str: The compressed string.\n    \"\"\"\n    result = []\n    prev_char = None\n    count = 0\n\n    for char in s:\n        if char == prev_char:\n            count += 1\n        else:\n            result.append(prev_char)\n            result.append(str(count))\n            prev_char = char\n            count = 1\n\n    # Append the last group of characters and their count\n    result.append(prev_char)\n    result.append(str(count))\n\n    return ''.join(result)\n\n# Check function with provided data points\nassert compress_string(\"aabcccccaaa\") == \"a2b1c5a3\", \"Test case 1 failed\"\nassert compress_string(\"abcdefg\") == \"abcdefg\", \"Test case 2 failed\"\nprint(\"All test cases passed!\")",
+        "passed": false,
+        "error": "Code execution error: sequence item 0: expected str instance, NoneType found"
+      },
+      {
+        "task_id": 6,
+        "prompt": "Write a Python function called `add(a, b)` that returns the sum of two numbers.",
+        "generated_code": "def add(a, b):\n    return a + b",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 7,
+        "prompt": "Write a Python function called `factorial(n)` that returns n factorial. Assume n >= 0.",
+        "generated_code": "def factorial(n):\n    if not isinstance(n, int) or n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    \n    return 1 if n == 0 else n * factorial(n-1)",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 8,
+        "prompt": "Write a Python function called `is_prime(n)` that returns True if n is prime, False otherwise. Assume n >= 0.",
+        "generated_code": "def is_prime(n):\n    \"\"\"\n    Check if a number is prime.\n    \n    Parameters:\n    n (int): The number to check.\n    \n    Returns:\n    bool: True if n is prime, False otherwise.\n    \"\"\"\n    if n <= 1:\n        return False\n    for i in range(2, int(n**0.5) + 1):\n        if n % i == 0:\n            return False\n    return True\n\n# Test cases\nprint(is_prime(7))   # True\nprint(is_prime(10))  # False\nprint(is_prime(97))  # True",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 9,
+        "prompt": "Write a Python function called `fizzbuzz(n)` that returns 'Fizz' if n is divisible by 3, 'Buzz' if by 5, 'FizzBuzz' if both, else the number as a string.",
+        "generated_code": "def fizzbuzz(n):\n    return \"Fizz\" if n % 3 == 0 else \"Buzz\" if n % 5 == 0 else str(n)",
+        "passed": false,
+        "error": "Assertion failed"
+      },
+      {
+        "task_id": 10,
+        "prompt": "Write a Python function called `fibonacci(n)` that returns the nth Fibonacci number (0-indexed, so fibonacci(0)==0, fibonacci(1)==1).",
+        "generated_code": "def fibonacci(n):\n    \"\"\"\n    Calculate the n-th Fibonacci number.\n\n    Parameters:\n    n (int): The index of the Fibonacci number to calculate.\n\n    Returns:\n    int: The n-th Fibonacci number.\n    \"\"\"\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b\n\n# Test cases\nprint(fibonacci(0))   # Expected output: 0\nprint(fibonacci(1))   # Expected output: 1\nprint(fibonacci(5))   # Expected output: 5\nprint(fibonacci(8))   # Expected output: 21",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 11,
+        "prompt": "Write a Python function called `flatten(lst)` that flattens a list of lists into a single list.",
+        "generated_code": "def flatten(lst):\n    \"\"\"\n    Flattens a list of lists into a single list.\n\n    Parameters:\n    lst (list): A list containing other lists.\n\n    Returns:\n    list: A single list containing all elements from the sublists.\n    \"\"\"\n    return [item for sublist in lst for item in sublist]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 12,
+        "prompt": "Write a Python function called `remove_duplicates(lst)` that returns a list with duplicates removed, preserving order.",
+        "generated_code": "def remove_duplicates(lst):\n    \"\"\"\n    Removes duplicate values from a list while maintaining the original order of elements.\n    \n    Parameters:\n    lst (list): The input list containing potentially duplicate elements.\n    \n    Returns:\n    list: A new list with duplicates removed, in the same order as the input list.\n    \"\"\"\n    return list(set(lst))\n\n# Test cases to verify the correctness of the function\nassert remove_duplicates([1, 2, 3, 4, 5]) == [1, 2, 3, 4, 5], \"Test case 1 failed\"\nassert remove_duplicates(['apple', 'banana', 'apple', 'pear']) == ['apple', 'banana', 'pear'], \"Test case 2 failed\"\nassert remove_duplicates([True, False, True, False, True]) == [True, False, True, False, True], \"Test case 3 failed\"\nprint(\"All test cases passed!\")",
+        "passed": false,
+        "error": "Code execution error: Test case 3 failed"
+      },
+      {
+        "task_id": 13,
+        "prompt": "Write a Python function called `chunk(lst, n)` that splits lst into chunks of size n.",
+        "generated_code": "def chunk(lst, n):\n    \"\"\"\n    Splits list 'lst' into chunks of size 'n'.\n    \n    Parameters:\n    lst (list): The input list to be split.\n    n (int): The size of each chunk.\n    \n    Returns:\n    list: A list of lists containing the chunks of the original list.\n    \"\"\"\n    return [lst[i:i+n] for i in range(0, len(lst), n)]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 14,
+        "prompt": "Write a Python function called `rotate(lst, k)` that rotates lst to the right by k positions.",
+        "generated_code": "def rotate(lst, k):\n    \"\"\"\n    Rotate a list to the right by k positions.\n    \n    Parameters:\n    lst (list): The input list to be rotated.\n    k (int): The number of positions to rotate the list to the right.\n    \n    Returns:\n    list: The rotated list.\n    \"\"\"\n    n = len(lst)\n    # Ensure k is within the bounds of the list length\n    k %= n\n    \n    # Perform rotation\n    return lst[-k:] + lst[:-k]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 15,
+        "prompt": "Write a Python function called `two_sum(nums, target)` that returns the indices of two numbers that add up to target.",
+        "generated_code": "def two_sum(nums, target):\n    \"\"\"\n    Finds two numbers in nums that add up to target and returns their indices.\n    \n    :param nums: List[int] - A list of integers.\n    :param target: int - The target sum.\n    :return: List[int] - Indices of the two numbers that add up to target.\n    \"\"\"\n    num_dict = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_dict:\n            return [num_dict[complement], i]\n        num_dict[num] = i\n    return []\n\n# Test cases\nprint(two_sum([2, 7, 11, 15], 9))  # Expected output: [0, 1]\nprint(two_sum([3, 2, 4], 6))       # Expected output: [1, 2]\nprint(two_sum([-1, 0], -1))        # Expected output: [1, 2]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 16,
+        "prompt": "Write a Python function called `binary_search(lst, target)` that returns the index of target in sorted lst, or -1 if not found.",
+        "generated_code": "def binary_search(lst, target):\n    \"\"\"\n    Searches for the first occurrence of 'target' in 'lst' using binary search algorithm.\n    \n    Parameters:\n    lst (list): A sorted list of elements.\n    target: The element to search for in the list.\n    \n    Returns:\n    int: The index of the first occurrence of 'target', or -1 if it is not present.\n    \"\"\"\n    left, right = 0, len(lst) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if lst[mid] == target:\n            return mid\n        elif lst[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    return -1\n\n# Check function with provided data points\nprint(binary_search([5,7,8,9,10], 8))  # Expected output: 3\nprint(binary_search([5,7,8,9,10], 6))  # Expected output: -1",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 17,
+        "prompt": "Write a Python function called `bubble_sort(lst)` that returns lst sorted in ascending order using bubble sort.",
+        "generated_code": "def bubble_sort(lst):\n    \"\"\"\n    Sorts a list of elements in ascending order using the bubble sort algorithm.\n    \n    Parameters:\n    lst (list): The list to be sorted.\n    \n    Returns:\n    list: The sorted list.\n    \"\"\"\n    n = len(lst)\n    for i in range(n):\n        # Track if any swap happens during this pass\n        swapped = False\n        for j in range(0, n-i-1):\n            if lst[j] > lst[j+1]:\n                lst[j], lst[j+1] = lst[j+1], lst[j]\n                swapped = True\n        # If no swaps occurred, the list is already sorted\n        if not swapped:\n            break\n    return lst\n\n# Check function to verify the correctness of the solution\ndef check_bubble_sort():\n    test_cases = [\n        ([64, 34, 25, 12, 22, 11, 90], [11, 12, 22, 25, 34, 64, 90]),\n        ([5, 7, 9, 11, 13, 15,",
+        "passed": false,
+        "error": "Code execution error: unexpected EOF while parsing (<string>, line 28)"
+      },
+      {
+        "task_id": 18,
+        "prompt": "Write a Python function called `max_subarray(nums)` that returns the maximum sum of a contiguous subarray (Kadane's algorithm).",
+        "generated_code": "def max_subarray(nums):\n    \"\"\"\n    Finds the maximum sum of any contiguous subarray within a one-dimensional array of numbers.\n    \n    Parameters:\n    nums (List[int]): The input list of integers.\n    \n    Returns:\n    int: The maximum sum of any contiguous subarray.\n    \"\"\"\n    current_sum = max_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n    return max_sum\n\n# Check function to verify the correctness of the solution\ndef check_solution():\n    assert max_subarray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) == 6, \"Test case 1 failed\"\n    assert max_subarray([1]) == 1, \"Test case 2 failed\"\n    assert max_subarray([-1, -2, -3]) == -6, \"Test case 3 failed\"\n    print(\"All test cases passed!\")\n\ncheck_solution()\n\nThis Python function implements Kadane's algorithm to find the maximum sum of a contiguous subarray within an array of integers. It iterates through the array once",
+        "passed": false,
+        "error": "Code execution error: invalid syntax (<string>, line 26)"
+      },
+      {
+        "task_id": 19,
+        "prompt": "Write a Python function called `word_count(s)` that returns a dictionary with the count of each word in s.",
+        "generated_code": "from collections import Counter\n\ndef word_count(s):\n    \"\"\"\n    Returns a dictionary with the count of each word in s.\n\n    Parameters:\n    s (str): The input string.\n\n    Returns:\n    dict: A dictionary where keys are words and values are their counts.\n    \"\"\"\n    return dict(Counter(s.split()))\n\n# Test cases to verify the correctness of the function\nassert word_count(\"This is a test\") == {\"This\": 1, \"is\": 2, \"a\": 1, \"test\": 1}, \"Test case 1 failed\"\nassert word_count(\"Hello world\") == {\"Hello\": 1, \"world\": 1}, \"Test case 2 failed\"\nassert word_count(\"\") == {}, \"Test case 3 failed\"\nprint(\"All test cases passed!\")",
+        "passed": false,
+        "error": "Code execution error: Test case 1 failed"
+      },
+      {
+        "task_id": 20,
+        "prompt": "Write a Python function called `group_by_length(words)` that groups words by their length into a dictionary.",
+        "generated_code": "def group_by_length(words):\n    \"\"\"\n    Groups words by their length into a dictionary.\n\n    Parameters:\n    words (list of str): A list of words to be grouped.\n\n    Returns:\n    dict: A dictionary where keys are the lengths of the words and values are lists of words of that length.\n    \"\"\"\n    return {len(word): [word] for word in words}",
+        "passed": false,
+        "error": "Assertion failed"
+      }
+    ]
+  },
+  "Qwen/Qwen2.5-1.5B-Instruct": {
+    "passed": 19,
+    "total": 20,
+    "pass_at_1": 0.95,
+    "categories": {
+      "strings": {
+        "passed": 5,
+        "total": 5
+      },
+      "math": {
+        "passed": 5,
+        "total": 5
+      },
+      "lists": {
+        "passed": 5,
+        "total": 5
+      },
+      "algorithms": {
+        "passed": 3,
+        "total": 3
+      },
+      "dicts": {
+        "passed": 1,
+        "total": 2
+      }
     },
-    {
-      "task_id": 3,
-      "prompt": "Write a Python function called `is_palindrome(s)` that returns True if s is a palindrome.",
-      "generated_code": "def is_palindrome(s):\n    \"\"\"\n    Check if the given string s is a palindrome.\n    \n    A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward (ignoring spaces, punctuation, and capitalization).\n    \n    Parameters:\n    s (str): The string to check.\n    \n    Returns:\n    bool: True if s is a palindrome, False otherwise.\n    \"\"\"\n    # Remove non-alphanumeric characters and convert to lowercase\n    cleaned_s = ''.join(char.lower() for char in s if char.isalnum())\n    # Compare the cleaned string with its reverse\n    return cleaned_s == cleaned_s[::-1]\n\n# Function to test the correctness of the is_palindrome function\ndef check_palindrome():\n    assert is_palindrome(\"A man, a plan, a canal: Panama\") == True, \"Test case 1 failed\"\n    assert is_palindrome(\"race a car\") == False, \"Test case 2 failed\"\n    assert is_palindrome(\" \") == True, \"Test case 3 failed\"\n    assert is_palindrome(\"No lemon, no melon\") == True, \"Test case 4 failed\"\n    print(\"All test cases passed!\")\n\ncheck_palindrome",
-      "passed": true,
-      "error": null
-    },
-    {
-      "task_id": 4,
-      "prompt": "Write a Python function called `factorial(n)` that returns n factorial. Assume n >= 0.",
-      "generated_code": "def factorial(n):\n    if not isinstance(n, int) or n < 0:\n        raise ValueError(\"n must be a non-negative integer\")\n    \n    return 1 if n == 0 else n * factorial(n - 1)",
-      "passed": true,
-      "error": null
-    },
-    {
-      "task_id": 5,
-      "prompt": "Write a Python function called `fizzbuzz(n)` that returns 'Fizz' if n divisible by 3, 'Buzz' if by 5, 'FizzBuzz' if both, else the number as string.",
-      "generated_code": "def fizzbuzz(n):\n    return \"Fizz\" if n % 3 == 0 else \"Buzz\" if n % 5 == 0 else str(n)",
-      "passed": false,
-      "error": "Assertion failed"
-    }
-  ]
+    "results": [
+      {
+        "task_id": 1,
+        "prompt": "Write a Python function called `reverse_string(s)` that returns the reversed string.",
+        "generated_code": "def reverse_string(s):\n    return s[::-1]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 2,
+        "prompt": "Write a Python function called `is_palindrome(s)` that returns True if s is a palindrome, False otherwise.",
+        "generated_code": "def is_palindrome(s):\n    return s == s[::-1]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 3,
+        "prompt": "Write a Python function called `count_vowels(s)` that returns the number of vowels in s (a, e, i, o, u, case-insensitive).",
+        "generated_code": "def count_vowels(s):\n    return sum(c.lower() in 'aeiou' for c in s)",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 4,
+        "prompt": "Write a Python function called `title_case(s)` that returns s with the first letter of each word capitalized.",
+        "generated_code": "def title_case(s):\n    return ' '.join(word.capitalize() for word in s.split())",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 5,
+        "prompt": "Write a Python function called `compress_string(s)` that compresses consecutive duplicate characters, e.g. 'aaabbc' -> 'a3b2c1'.",
+        "generated_code": "def compress_string(s):\n    result = \"\"\n    count = 1\n    for i in range(1, len(s)):\n        if s[i] == s[i - 1]:\n            count += 1\n        else:\n            result += s[i - 1] + str(count)\n            count = 1\n    result += s[-1] + str(count)\n    return result",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 6,
+        "prompt": "Write a Python function called `add(a, b)` that returns the sum of two numbers.",
+        "generated_code": "def add(a, b):\n    return a + b",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 7,
+        "prompt": "Write a Python function called `factorial(n)` that returns n factorial. Assume n >= 0.",
+        "generated_code": "def factorial(n):\n    if n == 0:\n        return 1\n    else:\n        return n * factorial(n - 1)",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 8,
+        "prompt": "Write a Python function called `is_prime(n)` that returns True if n is prime, False otherwise. Assume n >= 0.",
+        "generated_code": "def is_prime(n):\n    \"\"\"Return True if n is prime, False otherwise.\"\"\"\n    return all(n % i for i in range(2, int(n**0.5) + 1)) and n > 1",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 9,
+        "prompt": "Write a Python function called `fizzbuzz(n)` that returns 'Fizz' if n is divisible by 3, 'Buzz' if by 5, 'FizzBuzz' if both, else the number as a string.",
+        "generated_code": "def fizzbuzz(n):\n    return 'Fizz' * (n % 3 == 0) + 'Buzz' * (n % 5 == 0) or str(n)",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 10,
+        "prompt": "Write a Python function called `fibonacci(n)` that returns the nth Fibonacci number (0-indexed, so fibonacci(0)==0, fibonacci(1)==1).",
+        "generated_code": "def fibonacci(n):\n    if n == 0:\n        return 0\n    elif n == 1:\n        return 1\n    else:\n        a, b = 0, 1\n        for _ in range(2, n + 1):\n            a, b = b, a + b\n        return b",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 11,
+        "prompt": "Write a Python function called `flatten(lst)` that flattens a list of lists into a single list.",
+        "generated_code": "def flatten(lst):\n    return [item for sublist in lst for item in sublist]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 12,
+        "prompt": "Write a Python function called `remove_duplicates(lst)` that returns a list with duplicates removed, preserving order.",
+        "generated_code": "def remove_duplicates(lst):\n    return list(dict.fromkeys(lst))",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 13,
+        "prompt": "Write a Python function called `chunk(lst, n)` that splits lst into chunks of size n.",
+        "generated_code": "def chunk(lst, n):\n    return [lst[i:i+n] for i in range(0, len(lst), n)]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 14,
+        "prompt": "Write a Python function called `rotate(lst, k)` that rotates lst to the right by k positions.",
+        "generated_code": "def rotate(lst, k):\n    return lst[-k:] + lst[:-k]",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 15,
+        "prompt": "Write a Python function called `two_sum(nums, target)` that returns the indices of two numbers that add up to target.",
+        "generated_code": "from typing import List\n\ndef two_sum(nums: List[int], target: int) -> List[int]:\n    num_indices = {}\n    for i, num in enumerate(nums):\n        complement = target - num\n        if complement in num_indices:\n            return [num_indices[complement], i]\n        num_indices[num] = i\n    return []",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 16,
+        "prompt": "Write a Python function called `binary_search(lst, target)` that returns the index of target in sorted lst, or -1 if not found.",
+        "generated_code": "def binary_search(lst, target):\n    \"\"\"\n    Perform a binary search on a sorted list to find the index of a target value.\n    \n    Parameters:\n    lst (list): A sorted list of elements.\n    target: The element to search for within the list.\n    \n    Returns:\n    int: The index of the target if found, otherwise -1.\n    \"\"\"\n    left, right = 0, len(lst) - 1\n    \n    while left <= right:\n        mid = (left + right) // 2\n        \n        if lst[mid] == target:\n            return mid\n        elif lst[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n            \n    return -1",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 17,
+        "prompt": "Write a Python function called `bubble_sort(lst)` that returns lst sorted in ascending order using bubble sort.",
+        "generated_code": "def bubble_sort(lst):\n    n = len(lst)\n    for i in range(n):\n        for j in range(0, n-i-1):\n            if lst[j] > lst[j+1]:\n                lst[j], lst[j+1] = lst[j+1], lst[j]\n    return lst",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 18,
+        "prompt": "Write a Python function called `max_subarray(nums)` that returns the maximum sum of a contiguous subarray (Kadane's algorithm).",
+        "generated_code": "from typing import List\n\ndef max_subarray(nums: List[int]) -> int:\n    \"\"\"\n    Finds the maximum sum of a contiguous subarray within an array of integers.\n    \n    :param nums: List[int] - The input list of integers.\n    :return: int - The maximum sum of any contiguous subarray.\n    \"\"\"\n    if not nums:\n        return 0\n    \n    current_sum = max_sum = nums[0]\n    for num in nums[1:]:\n        current_sum = max(num, current_sum + num)\n        max_sum = max(max_sum, current_sum)\n    \n    return max_sum",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 19,
+        "prompt": "Write a Python function called `word_count(s)` that returns a dictionary with the count of each word in s.",
+        "generated_code": "def word_count(s):\n    return {word: s.count(word) for word in s.split()}",
+        "passed": true,
+        "error": null
+      },
+      {
+        "task_id": 20,
+        "prompt": "Write a Python function called `group_by_length(words)` that groups words by their length into a dictionary.",
+        "generated_code": "def group_by_length(words):\n    return {len(word): [word] for word in words}",
+        "passed": false,
+        "error": "Assertion failed"
+      }
+    ]
+  }
 }

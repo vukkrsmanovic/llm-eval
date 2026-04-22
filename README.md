@@ -11,9 +11,16 @@ A lightweight framework for evaluating the coding ability of small LLMs using au
 Qwen/Qwen2.5-0.5B-Instruct
 
 ## Results
-| Model | Tasks | pass@1 |
-|-------|-------|--------|
-| Qwen2.5-0.5B-Instruct | 5 | 80.00% |
+
+| Model | pass@1 | strings | math | lists | algorithms | dicts |
+|-------|--------|---------|------|-------|------------|-------|
+| Qwen2.5-0.5B-Instruct | 60.00% | 3/5 | 4/5 | 4/5 | 1/3 | 0/2 |
+| Qwen2.5-1.5B-Instruct | 95.00% | 5/5 | 5/5 | 5/5 | 3/3 | 1/2 |
+
+### Key findings
+- 1.5B model achieves near-perfect pass@1 (95%) vs 60% for 0.5B
+- Largest gap in algorithms category (33% vs 100%)
+- Dict-related tasks remain challenging even for the larger model
 
 ## Setup
 ```bash

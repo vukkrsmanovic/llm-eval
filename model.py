@@ -1,14 +1,12 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch
 
-MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
-
-def load_model():
-    print(f"Loading {MODEL_NAME}...")
+def load_model(model_name):
+    print(f"Loading {model_name}...")
     
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL_NAME,
+        model_name,
         torch_dtype=torch.float16,
     )
     
